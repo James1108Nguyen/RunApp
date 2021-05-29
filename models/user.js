@@ -13,15 +13,31 @@ let user_schema = mongoose.Schema({
     username: {
         type: String,
         unique: true, 
-        require: true,
+        require: true
     },
     password:{
         type: String,
-        require: true,
+        require: true
     },
     phone: {
+        type: String
+    },
+    adress: {
+
+    },
+    birthday: {
+        type: String
+    },
+    fullname: {
+        type: String
+    },
+    image: {
+        type: String
+    },
+    sex: {
         type: String,
     }
+
 })
 
 // Xác thực Unique (username là trường duy nhất)
