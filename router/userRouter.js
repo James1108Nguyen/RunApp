@@ -37,13 +37,17 @@ router.post('/register', async function(req,res){
         email: req.body.email,
         username: req.body.username,
         password:req.body.password,
-         phone: req.body.phone,
-        
+        phone: req.body.phone,
+        sex: req.body.sex,
+        address: req.body.address,
+        fullname: fullname,
+             
       });
       user
         .save()
         .then((createdUser) => {   
           res.send({username:createdUser.username,password:createdUser.password});
+          console.log("Đăng ký thành công ^^")
         })
         .catch((err) => {
           res.status(500).json({
