@@ -40,7 +40,7 @@ router.post('/register', async function(req,res){
         phone: req.body.phone,
         sex: req.body.sex,
         address: req.body.address,
-        fullname: fullname,
+        fullname: req.body.fullname,
              
       });
       user
