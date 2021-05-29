@@ -22,8 +22,8 @@ let user_schema = mongoose.Schema({
     phone: {
         type: String
     },
-    adress: {
-
+    address: {
+        type:string
     },
     birthday: {
         type: String
