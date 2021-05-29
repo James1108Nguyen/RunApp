@@ -23,7 +23,7 @@ let user_schema = mongoose.Schema({
         type: String
     },
     address: {
-        type:string
+        type: String
     },
     birthday: {
         type: String
