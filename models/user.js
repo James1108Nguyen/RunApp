@@ -12,6 +12,7 @@ let user_schema = mongoose.Schema({
 
     username: {
         type: String,
+        unique: true, 
         require: true
     },
     password:{
@@ -40,7 +41,7 @@ let user_schema = mongoose.Schema({
 })
 
 // Xác thực Unique (username là trường duy nhất)
-user_schema.plugin(uniqueValidator)
+//user_schema.plugin(uniqueValidator)
 
 exports.User = mongoose.model("User", user_schema);
 
