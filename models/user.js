@@ -12,7 +12,6 @@ let user_schema = mongoose.Schema({
 
     username: {
         type: String,
-        unique: true, 
         require: true
     },
     password:{
