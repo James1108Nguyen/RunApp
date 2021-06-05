@@ -1,0 +1,33 @@
+const express = require("express")
+const  router = express.Router()
+const { Food } = require("../models/food")
+
+
+
+router.post('/insert', async function(req,res){
+    let food = Food({
+        name:  req.body.name,
+        calories: req.body.calories,
+        totalWeight: req.body.serving_size_g,
+        fat: req.body.fat_total_g,
+        protein: req.body.protein_g,
+        carbohydrates: req.body.carbohydrates_total_g,
+        cholesterol: req.body.cholesterol_mg,
+    });
+    food
+      .save()
+      .then((newFood)=>{
+          res.send({name:newFood.name , totalWeight: newFood.totalWeight,calories: newFood.calories })
+          console.log("Thêm thức ăn thành công ^^")
+      })
+      .catch((err)=>{
+          res.status(500).json({
+              error: err,
+              status: 'Failure'
+          })
+      })
+})
+
+
+
+module.exports = router;

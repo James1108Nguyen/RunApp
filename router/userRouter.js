@@ -3,6 +3,7 @@ const express = require("express")
 const  router = express.Router()
 const { User } = require("../models/user")
 
+//Hash Pass bảo mật
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
 const salt = bcrypt.genSaltSync(saltRounds);
@@ -17,6 +18,8 @@ router.get('/',async function(req,res){
     
     
 })
+
+
 
 router.post("/login", async function(req,res){
     let user = await User.findOne({username : req.body.username})
