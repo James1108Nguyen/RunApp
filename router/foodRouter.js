@@ -2,7 +2,16 @@ const express = require("express")
 const  router = express.Router()
 const { Food } = require("../models/food")
 
-
+router.get('/',async function(req,res){
+    var food = await Food.find();
+   if (food) {
+     res.send(food);
+   } else {
+      res.status(500).send("Bad server");
+   }
+    
+    
+})
 
 router.post('/insert', async function(req,res){
     let food = Food({
