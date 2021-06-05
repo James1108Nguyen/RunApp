@@ -9,6 +9,10 @@ let food_schema = mongoose.Schema({
         unique: true, 
         require: true
     },
+    type: {
+        type: String,
+        require: true
+    },
     urlImage: {
         type: String,
         default : 'https://lh3.googleusercontent.com/proxy/QiOWPO6LZIX8YE7-vIejUncEFmM851yRo91nJWGkfgDL1Z6iTInzW880q6d9Rki-KS1Y8EVTJpauJdU8roVQVJWobmMmMTG8jNSf'

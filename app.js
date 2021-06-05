@@ -38,7 +38,7 @@ mongoose
 
 
 
-// để định nghĩa port 3000
+// để định nghĩa port 3000 - không thể thiếu
 
 const PORT = process.env.PORT || 3000;
 var server = app.listen(PORT, function () {
