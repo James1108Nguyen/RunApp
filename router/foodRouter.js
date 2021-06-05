@@ -16,8 +16,8 @@ router.get('/',async function(req,res){
 router.post('/insert', async function(req,res){
     let food = Food({
         name:  req.body.name,
-        type: req.body.type
-        urlImage: req.body.urlImage
+        type: req.body.type,
+        urlImage: req.body.urlImage,
         calories: req.body.calories,
         totalWeight: req.body.serving_size_g,
         fat: req.body.fat_total_g,
