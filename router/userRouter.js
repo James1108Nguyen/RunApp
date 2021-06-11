@@ -44,7 +44,7 @@ router.post("/login", async function(req,res){
         return res.status(400).send("Tài khoản không hợp lệ");
       }
     const token = jwt.sign({_id: user._id}, process.env.TOKEN_SECRET, { expiresIn: 60 * 60 * 24 * 7 });
-    response.header('auth-token', token).send(token);
+    res.header('auth-token', token).send(token);
 
 })
 
