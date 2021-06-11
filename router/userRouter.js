@@ -2,22 +2,33 @@
 const express = require("express")
 const  router = express.Router()
 const { User } = require("../models/user")
+const jwt = require('jsonwebtoken')
 
 //Hash Pass bảo mật
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
 const salt = bcrypt.genSaltSync(saltRounds);
 
-router.get('/',async function(req,res){
-    var users = await User.find();
-   if (users) {
-     res.send(users);
-   } else {
-      res.status(500).send("Bad server");
-   }
+
+//Token xác thực ng dùng vào API 
+const verifyToken = require('../middlewares/verifyToken')
+
+// router.get('/',verifyToken, async function(req,res){
+//     var users = await User.find();
+//    if (users) {
+//      res.send(users);
+//    } else {
+//       res.status(500).send("Bad server");
+//    }
     
     
-})
+// })
+
+router.get('/', verifyToken, (request, response) => {
+  User.find({}).exec(function (err, users) {
+      response.send(users);
+  });
+});
 
 
 
@@ -32,9 +43,8 @@ router.post("/login", async function(req,res){
     if (!user) {
         return res.status(400).send("Tài khoản không hợp lệ");
       }
-    if(user && bcrypt.compareSync(req.body.password,user.password)){ 
-        return res.status(200).send("Đăng nhập thành công")
-    }
+    const token = jwt.sign({_id: user._id}, process.env.TOKEN_SECRET, { expiresIn: 60 * 60 * 24 * 7 });
+    response.header('auth-token', token).send(token);
 
 })
 
