@@ -4,10 +4,13 @@ const  router = express.Router()
 const { User } = require("../models/user")
 const jwt = require('jsonwebtoken')
 
+const verifyToken = require ('../middlewares/verifyToken')
+
 //Hash Pass bảo mật
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
 const salt = bcrypt.genSaltSync(saltRounds);
+
 
 router.get('/', verifyToken, (request, response) => {
   User.find({}).exec(function (err, users) {
@@ -33,7 +36,7 @@ router.post("/login", async function(req,res){
     if (!bcrypt.compareSync(req.body.password , user.password)){
         return res.status(422).send("Rất tiếc, mật khẩu của bạn không đúng. Vui lòng kiểm tra lại mật khẩu.")
     }  
-    
+
     const token = jwt.sign({_id: user._id}, process.env.TOKEN_SECRET, { expiresIn: 60 * 60 * 24 });
     res.header('auth-token', token).send(token);
     
