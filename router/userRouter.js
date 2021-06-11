@@ -9,26 +9,12 @@ const bcrypt = require('bcrypt');
 const saltRounds = 10;
 const salt = bcrypt.genSaltSync(saltRounds);
 
-
-//Token xác thực ng dùng vào API 
-const verifyToken = require('../middlewares/verifyToken')
-
-// router.get('/',verifyToken, async function(req,res){
-//     var users = await User.find();
-//    if (users) {
-//      res.send(users);
-//    } else {
-//       res.status(500).send("Bad server");
-//    }
-    
-    
-// })
-
 router.get('/', verifyToken, (request, response) => {
   User.find({}).exec(function (err, users) {
       response.send(users);
   });
 });
+
 
 
 
@@ -43,9 +29,10 @@ router.post("/login", async function(req,res){
     if (!user) {
         return res.status(400).send("Tài khoản không hợp lệ");
       }
-    const token = jwt.sign({_id: user._id}, process.env.TOKEN_SECRET, { expiresIn: 60 * 60 * 24 * 7 });
-    res.header('auth-token', token).send(token);
-
+    if(user && bcrypt.compareSync(req.body.password,user.password)){ 
+      const token = jwt.sign({_id: user._id}, process.env.TOKEN_SECRET, { expiresIn: 60 * 60 * 24 });
+      res.header('auth-token', token).send(token);
+    }
 })
 
 
