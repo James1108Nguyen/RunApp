@@ -29,11 +29,14 @@ router.post("/login", async function(req,res){
     if (!user) {
         return res.status(400).send("Tài khoản không hợp lệ");
       }
-    if(user && bcrypt.compareSync(req.body.password,user.password)){ 
-      const token = jwt.sign({_id: user._id}, process.env.TOKEN_SECRET, { expiresIn: 60 * 60 * 24 });
-      res.header('auth-token', token).send(token);
-    }
-    else res.status(422).send("Rất tiếc, mật khẩu của bạn không đúng. Vui lòng kiểm tra lại mật khẩu.")
+   
+    if (!bcrypt.compareSync(req.body.password , user.password)){
+        return res.status(422).send("Rất tiếc, mật khẩu của bạn không đúng. Vui lòng kiểm tra lại mật khẩu.")
+    }  
+    
+    const token = jwt.sign({_id: user._id}, process.env.TOKEN_SECRET, { expiresIn: 60 * 60 * 24 });
+    res.header('auth-token', token).send(token);
+    
 })
 
 
