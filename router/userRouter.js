@@ -43,6 +43,20 @@ router.post("/login", async function(req,res){
 })
 
 
+//Change Password
+router.post("/changePass", async function(req,res){
+if (!bcrypt.compareSync(req.body.currentPassword , user.password)){
+  return res.status(422).send("Rất tiếc, mật khẩu của bạn không đúng. Vui lòng kiểm tra lại mật khẩu.")
+}
+User.findOneAndUpdate({username : req.body.username},{password:bcrypt.hashSync(req.body.password, salt)},{new : true},(err,data) => {
+    if(err){
+      console.log(err)
+    }else{
+      console.log(data)
+    }
+  })
+})
+
 //register
 router.post('/register', async function(req,res){
     let user = User({
