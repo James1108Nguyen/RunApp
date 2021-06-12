@@ -51,9 +51,9 @@ if (!bcrypt.compareSync(req.body.currentPassword , user.password)){
 }
 User.findOneAndUpdate({username : req.body.username},{password:bcrypt.hashSync(req.body.password, salt)},{new : true},(error,data) => {
     if(error){
-      console.log(err)
+      return res.status(422).send(error);
     }else{
-      console.log(data)
+      return res.status(200).send(data);
     }
   })
 })
