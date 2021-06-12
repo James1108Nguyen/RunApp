@@ -49,8 +49,8 @@ let user = await User.findOne({username : req.body.username})
 if (!bcrypt.compareSync(req.body.currentPassword , user.password)){
   return res.status(422).send("Rất tiếc, mật khẩu của bạn không đúng. Vui lòng kiểm tra lại mật khẩu.")
 }
-User.findOneAndUpdate({username : req.body.username},{password:bcrypt.hashSync(req.body.password, salt)},{new : true},(err,data) => {
-    if(err){
+User.findOneAndUpdate({username : req.body.username},{password:bcrypt.hashSync(req.body.password, salt)},{new : true},(error,data) => {
+    if(error){
       console.log(err)
     }else{
       console.log(data)
