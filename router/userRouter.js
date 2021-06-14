@@ -85,20 +85,23 @@ router.post("/addInfo",async function(req, res){
     job: req.body.job,
   })
 
-  info.save()
-  .then((newInfo) => {
-    res.status(201).json(newInfo)
-  })
-  .catch(() => {
   
+  info
+  .save()
+  .then((newInfo) => {
+    return res.status(201).json(newInfo)
   })
-  userInfo.findByIdAndUpdate(req.params.id,info,{new: true},(err,data)=>{
-    if(err){
-      res.status(411).send(err)
-    } else {
-      res.status(200).send(data)
+  .catch()
+
+
+  userInfo.findByIdAndUpdate(req.params.id,info,{new: true},{new : true},(error,data) => {
+    if(error){
+      return res.status(422).send(error);
+    }else{
+      return res.status(200).send(data);
     }
   })
+
 
   
 
