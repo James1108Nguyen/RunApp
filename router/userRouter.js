@@ -72,7 +72,7 @@ router.post("/addInfo",async function(req, res){
     return res.status(400).send("Invalid User");
   }
   let info = new userInfo({
-    user: req.body.user,
+    user: req.body.UserID,
     phone: req.body.phone,
     adress: req.body.address,
     fullname: req.body.fullname,
