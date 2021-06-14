@@ -91,7 +91,7 @@ router.post("/addInfo",async function(req, res){
   .then((newInfo) => {
     return res.status(201).json(newInfo)
   })
-  .catch(() => {
+  .catch((error) => {
     return res.status(400).send(error)
   })
 
