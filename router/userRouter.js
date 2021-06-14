@@ -87,7 +87,7 @@ router.post("/addInfo",async function(req, res){
 
   info.save()
   .then((newInfo) => {
-    res.status(200).json(newInfo)
+    res.status(201).json(newInfo)
   })
   .catch(() => {
   
