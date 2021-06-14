@@ -91,9 +91,9 @@ router.post("/addInfo",async function(req, res){
   .then((newInfo) => {
     return res.status(201).json(newInfo)
   })
-  .catch(
+  .catch(() => {
     return res.status(400).send(error)
-  )
+  })
 
 
   userInfo.findByIdAndUpdate(req.params.id,info,{new: true},{new : true},(error,data) => {
