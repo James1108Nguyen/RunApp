@@ -90,14 +90,14 @@ router.post("/addInfo",async function(req, res){
     res.status(200).json(newInfo)
   })
   .catch(() => {
-    userInfo.findByIdAndUpdate(req.params.id,info,{new: true},(err,data)=>{
-      if(err){
-        res.status(411).send(err)
-      } else {
-        res.status(200).send(info)
-      }
-    })
   
+  })
+  userInfo.findByIdAndUpdate(req.params.id,info,{new: true},(err,data)=>{
+    if(err){
+      res.status(411).send(err)
+    } else {
+      res.status(200).send(info)
+    }
   })
 
   
