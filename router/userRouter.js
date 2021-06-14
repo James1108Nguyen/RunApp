@@ -46,10 +46,10 @@ router.post("/login", async function(req,res){
 //Change Password
 router.post("/changePass", async function(req,res){
 let user = await User.findOne({username : req.body.username})
-if (!bcrypt.compareSync(req.body.currentPassword , user.password)){
+if (!bcrypt.compareSync(req.body.currentPassword , user.newPassword)){
   return res.status(422).send("Rất tiếc, mật khẩu của bạn không đúng. Vui lòng kiểm tra lại mật khẩu.")
 }
-User.findOneAndUpdate({username : req.body.username},{password:bcrypt.hashSync(req.body.password, salt)},{new : true},(error,data) => {
+User.findOneAndUpdate({username : req.body.username},{password:bcrypt.hashSync(req.body.newPassword, salt)},{new : true},(error,data) => {
     if(error){
       return res.status(422).send(error);
     }else{
