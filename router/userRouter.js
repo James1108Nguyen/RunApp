@@ -89,11 +89,18 @@ router.post("/addInfo",async function(req, res){
   .then((newInfo) => {
     res.status(200).json(newInfo)
   })
-  .catch((err) => {
-    res.status(400).send('Thêm thất bại')
-    res.send(err)
-    
+  .catch(() => {
+    userInfo.findByIdAndUpdate(req.params,info,{new: true},(err,data)=>{
+      if(err){
+        res.status(411).send(err)
+      } else {
+        res.status(200).send(data)
+      }
+    })
+  
   })
+
+  
 
 
 })
