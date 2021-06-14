@@ -27,6 +27,7 @@ let userInfo_schema = mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId ,
         ref : 'User',
         require: true,
+        unique: true
     },
     phone: {
         type: String
@@ -63,7 +64,7 @@ let userInfo_schema = mongoose.Schema({
     },
 })
 
-// Xác thực Unique (username là trường duy nhất)
+// Unique Check
 user_schema.plugin(uniqueValidator)
 userInfo_schema.plugin(uniqueValidator)
 
