@@ -2,7 +2,16 @@
 const express = require("express")
 const  router = express.Router()
 const { User } = require("../models/user")
+const {userInfo} = require("../models/user")
 const jwt = require('jsonwebtoken')
+
+//upload file
+const cloudinary = require("cloudinary").v2;
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
+});
 
 const verifyToken = require ('../middlewares/verifyToken')
 
@@ -17,8 +26,6 @@ router.get('/', verifyToken, (request, response) => {
       response.send(users);
   });
 });
-
-
 
 
 router.post("/login", async function(req,res){
@@ -57,6 +64,43 @@ User.findOneAndUpdate({username : req.body.username},{password:bcrypt.hashSync(r
     }
   })
 })
+
+//Update User info
+router.post("/addInfo",async function(req, res){
+  const user = await User.findById(req.body.UserID)
+  if (!user) {
+    return res.status(400).send("Invalid User");
+  }
+  let info = new userInfo({
+    user: req.body.user,
+    phone: req.body.phone,
+    adress: req.body.address,
+    fullname: req.body.fullname,
+    image: req.body.image,
+    gender: req.body.gender,
+    note: req.body.note,
+    height: req.body.height,
+    weight: req.body.weight,
+    description: req.body.description,
+    job: req.body.job,
+  })
+
+  info.save()
+  .then((newInfo) => {
+    res.status(200).json(newInfo)
+  })
+  .catch((err) => {
+    res.status(400).send('Thêm thất bại')
+    res.send(err)
+    
+  })
+
+
+})
+
+
+
+
 
 //register
 router.post('/register', async function(req,res){

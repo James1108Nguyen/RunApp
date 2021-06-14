@@ -19,6 +19,15 @@ let user_schema = mongoose.Schema({
         type: String,
         require: true
     },
+})
+
+
+let userInfo_schema = mongoose.Schema({
+    user: {
+        type: mongoose.Schema.Types.ObjectId ,
+        ref : 'User',
+        require: true,
+    },
     phone: {
         type: String
     },
@@ -34,14 +43,31 @@ let user_schema = mongoose.Schema({
     image: {
         type: String
     },
-    sex: {
+    gender: {
         type: String,
-    }
-
+    },
+    note: {
+        type:String,
+    },
+    height:{
+        type: Number,
+    },
+    weight: {
+        type: Number,
+    },
+    description: {
+        type: String,
+    },
+    job: {
+        type: String,
+    },
 })
 
 // Xác thực Unique (username là trường duy nhất)
 user_schema.plugin(uniqueValidator)
+userInfo_schema.plugin(uniqueValidator)
 
-exports.User = mongoose.model("User", user_schema);
+exports.User = mongoose.model("User", user_schema)
+
+exports.userInfo = mongoose.model("userInfo", userInfo_schema)
 
