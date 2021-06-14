@@ -94,7 +94,7 @@ router.post("/addInfo",async function(req, res){
       if(err){
         res.status(411).send(err)
       } else {
-        res.status(200).send(data)
+        res.status(200).send(info)
       }
     })
   
