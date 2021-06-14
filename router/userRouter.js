@@ -85,7 +85,7 @@ router.post("/addInfo",async function(req, res){
     job: req.body.job,
   })
 
-  
+  if (!req.params.id) {
   info
   .save()
   .then((newInfo) => {
@@ -93,7 +93,7 @@ router.post("/addInfo",async function(req, res){
   })
   .catch((error) => {
     return res.status(400).send(error)
-  })
+  })}
 
 
   userInfo.findByIdAndUpdate(req.params.id,info,{new: true},{new : true},(error,data) => {
