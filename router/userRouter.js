@@ -92,7 +92,7 @@ router.post("/addInfo",async function(req, res){
     return res.status(201).send(newInfo)
   })
   .catch((error)=> {
-    return res.status(404).send(error,req.body.id)
+    return res.status(404).send(error)
   })
 })
 
