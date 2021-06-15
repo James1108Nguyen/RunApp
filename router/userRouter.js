@@ -123,7 +123,21 @@ router.post("/updateInfo",async function(req, res){
     job: req.body.job,
   })
 
-  userInfo.findByIdAndUpdate(req.body.id,{info},{new: true},(error,data) => {
+  userInfo.findByIdAndUpdate(req.body.id,
+    {
+      phone: req.body.phone,
+      adress: req.body.address,
+      fullname: req.body.fullname,
+      image: req.body.image,
+      gender: req.body.gender,
+      note: req.body.note,
+      height: req.body.height,
+      weight: req.body.weight,
+      description: req.body.description,
+      job: req.body.job,
+    },
+    {new: true},
+    (error,data) => {
     if(error){
       return res.status(422).send(error);
     }else{
