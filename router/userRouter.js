@@ -87,7 +87,7 @@ router.post("/addInfo",async function(req, res){
   })
 
   info
-  .save
+  .save()
   .then((newInfo) => {
     res.status(201).send(newInfo)
   })
@@ -95,7 +95,7 @@ router.post("/addInfo",async function(req, res){
     res.status(500).send(err)
   })
   
-  return res.status(444).send('Toang\n',info)
+  return res.status(444).send('Toang',info)
 
   // userInfo.findByIdAndUpdate(req.params.id,
   //   {
