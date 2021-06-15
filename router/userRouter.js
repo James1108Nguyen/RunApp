@@ -95,7 +95,7 @@ router.post("/addInfo",async function(req, res){
     res.status(500).send(err)
   })
   
-  return res.status(444).send('Toang')
+  return res.status(444).send('Toang\n',info)
 
   // userInfo.findByIdAndUpdate(req.params.id,
   //   {
