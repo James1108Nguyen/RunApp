@@ -124,7 +124,7 @@ router.post("/updateInfo",async function(req, res){
     job: req.body.job,
   })
 
-  userInfo.findOneAndUpdate({_id: req.params.id},info,{new: true},(error,data) => {
+  userInfo.findOneAndUpdate({user: req.body.UserID},{phone: req.body.phone},{new: true},(error,data) => {
     if(error){
       return res.status(422).send(error);
     }else{
