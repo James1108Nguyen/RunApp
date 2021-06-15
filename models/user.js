@@ -30,37 +30,48 @@ let userInfo_schema = mongoose.Schema({
         unique: true
     },
     phone: {
-        type: String
+        type: String,
+        default: ''
     },
     address: {
-        type: String
+        type: String,
+        default: ''
     },
     birthday: {
-        type: String
+        type: String,
+        default: ''
     },
     fullname: {
-        type: String
+        type: String,
+        default: ''
     },
     image: {
-        type: String
+        type: String,
+        default: ''
     },
     gender: {
         type: String,
+        default: ''
     },
     note: {
         type:String,
+        default: ''
     },
     height:{
         type: Number,
+        default: ''
     },
     weight: {
         type: Number,
+        default: ''
     },
     description: {
         type: String,
+        default: ''
     },
     job: {
         type: String,
+        default: ''
     },
 })
 
