@@ -59,11 +59,10 @@ let userInfo_schema = mongoose.Schema({
     },
     height:{
         type: Number,
-        default: ''
     },
     weight: {
         type: Number,
-        default: ''
+        
     },
     description: {
         type: String,
