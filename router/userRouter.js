@@ -89,7 +89,7 @@ router.post("/addInfo",async function(req, res){
   info
   .save()
   .then((newInfo) => {
-    res.status(201).send(newInfo)
+    return res.status(201).send(newInfo)
   })
   .catch( ()=> {
   })
