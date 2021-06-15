@@ -86,13 +86,14 @@ router.post("/addInfo",async function(req, res){
     job: req.body.job,
   })
 
-  info.save()
-    .then((newInfo) => {
-      return res.status(201).json(newInfo)
-    })
-    .catch((error) => {
-      res.status(500).send(error)
-    })
+  info
+  .save
+  .then((newInfo) => {
+    res.status(201).send(newInfo)
+  })
+  .catch((err) => {
+    res.status(500).send(err)
+  })
   
   return res.status(444).send('Toang')
 
