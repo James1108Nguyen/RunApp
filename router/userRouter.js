@@ -91,32 +91,30 @@ router.post("/addInfo",async function(req, res){
   .then((newInfo) => {
     res.status(201).send(newInfo)
   })
-  .catch((err) => {
-    res.status(500).send(err)
+  .catch( ()=> {
   })
   
-  return res.status(444).send('Toang',info)
 
-  // userInfo.findByIdAndUpdate(req.params.id,
-  //   {
-  //     phone: req.body.phone,
-  //     adress: req.body.address,
-  //     fullname: req.body.fullname,
-  //     image: req.body.image,
-  //     gender: req.body.gender,
-  //     note: req.body.note,
-  //     height: req.body.height,
-  //     weight: req.body.weight,
-  //     description: req.body.description,
-  //     job: req.body.job,
-  //   }  
-  //   ,{new: true},(error,data) => {
-  //   if(error){
-  //     return res.status(422).send(error);
-  //   }else{
-  //     return res.status(200).send(data);
-  //   }
-  // })
+  userInfo.findByIdAndUpdate(req.params.id,
+    {
+      phone: req.body.phone,
+      adress: req.body.address,
+      fullname: req.body.fullname,
+      image: req.body.image,
+      gender: req.body.gender,
+      note: req.body.note,
+      height: req.body.height,
+      weight: req.body.weight,
+      description: req.body.description,
+      job: req.body.job,
+    }  
+    ,{new: true},(error,data) => {
+    if(error){
+      return res.status(422).send(error);
+    }else{
+      return res.status(200).send(data);
+    }
+  })
 
 })
 
