@@ -93,7 +93,7 @@ router.post("/addInfo",async function(req, res){
   })
   .catch( ()=> {
   })
-  
+
 
    userInfo.findByIdAndUpdate(req.body.id,
     {
@@ -113,7 +113,7 @@ router.post("/addInfo",async function(req, res){
     if(error){
       return res.status(422).send(error);
     }else{
-      return res.status(200).send(data);
+      return res.status(200).send(data,req.body.id);
     }
   })
 
