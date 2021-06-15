@@ -86,14 +86,15 @@ router.post("/addInfo",async function(req, res){
     job: req.body.job,
   })
 
-  info
-  .save()
-  .then((newInfo) => {
-    return res.status(201).json(newInfo)
-  })
-  .catch((error) => {
-    return res.status(400).send('Failed',error)
-  })
+  info.save()
+    .then((newInfo) => {
+      return res.status(201).json(newInfo)
+    })
+    .catch((error) => {
+      res.status(500).send(error)
+    })
+  
+  return res.status(444).send('Toang')
 
   // userInfo.findByIdAndUpdate(req.params.id,
   //   {
