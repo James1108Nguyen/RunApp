@@ -91,11 +91,11 @@ router.post("/addInfo",async function(req, res){
   .then((newInfo) => {
     return res.status(201).send(newInfo)
   })
-  .catch( (err)=> {
-    return res.status(500).send(err)
+  .catch( (error)=> {
+    return res.status(404).send(error)
   })
 
-
+  if (req.body.id) {  
   userInfo.findByIdAndUpdate(req.body.id,
     {
     phone: req.body.phone,
@@ -117,7 +117,7 @@ router.post("/addInfo",async function(req, res){
       return res.status(200).send(data);
     }
   })
-
+  }
 
 
 })
