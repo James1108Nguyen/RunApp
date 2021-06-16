@@ -132,6 +132,7 @@ router.post("/Infov2",async function(req, res){
   info
   .save()
   .then((newInfo) => {
+    console.log(newInfo)
     return res.status(201).send(newInfo)
   })
   .catch(()=> {
