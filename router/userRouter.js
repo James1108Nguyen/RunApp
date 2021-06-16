@@ -66,7 +66,7 @@ User.findOneAndUpdate({username : req.body.username},{password:bcrypt.hashSync(r
   })
 })
 //Info
-router.get('/info', async function(req,res){
+router.get('/getInfo', async function(req,res){
   if (!req.body.UserID) {
     return res.status(400).send('Error')
   } 
@@ -108,6 +108,65 @@ router.post("/addInfo",async function(req, res){
     return res.status(404).send(error)
   })
 })
+
+
+router.post("/Infov2",async function(req, res){
+  const user = await User.findById(req.body.UserID)
+  if (!user) {
+    return res.status(400).send("Invalid User");
+  }
+  let info = new userInfo({
+    user: req.body.UserID,
+    phone: req.body.phone,
+    adress: req.body.address,
+    fullname: req.body.fullname,
+    image: req.body.image,
+    gender: req.body.gender,
+    note: req.body.note,
+    height: req.body.height,
+    weight: req.body.weight,
+    description: req.body.description,
+    job: req.body.job,
+  })
+
+  info
+  .save()
+  .then((newInfo) => {
+    return res.status(201).send(newInfo)
+  })
+  .catch(()=> {
+    userInfo.findByIdAndUpdate(req.body.id,
+      {
+      phone: req.body.phone,
+      adress: req.body.address,
+      fullname: req.body.fullname,
+      image: req.body.image,
+      gender: req.body.gender,
+      note: req.body.note,
+      height: req.body.height,
+      weight: req.body.weight,
+      description: req.body.description,
+      job: req.body.job,
+    }
+      
+      ,{new: true},(error,data) => {
+      if(error){
+        return res.status(422).send(error);
+      }else{
+        return res.status(200).send(data);
+      }
+    })
+ 
+  })
+
+ 
+
+})
+
+
+
+
+
 
 router.post("/updateInfo",async function(req, res){
   const user = await User.findById(req.body.UserID)
