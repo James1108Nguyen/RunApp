@@ -5,13 +5,8 @@ const { User } = require("../models/user")
 const {userInfo} = require("../models/user")
 const jwt = require('jsonwebtoken')
 
-//upload file
-const cloudinary = require("cloudinary").v2;
-cloudinary.config({
-  cloud_name: process.env.CLOUDINARY_NAME,
-  api_key: process.env.CLOUDINARY_API_KEY,
-  api_secret: process.env.CLOUDINARY_API_SECRET,
-});
+
+
 
 const verifyToken = require ('../middlewares/verifyToken')
 
@@ -159,8 +154,6 @@ router.post("/Infov2",async function(req, res){
     })
  
   })
-
- 
 
 })
 
