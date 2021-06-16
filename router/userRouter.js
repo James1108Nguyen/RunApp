@@ -136,7 +136,7 @@ router.post("/Infov2",async function(req, res){
     return res.status(201).send(newInfo)
   })
   .catch(()=> {
-    userInfo.findByIdAndUpdate(req.body.id,
+    userInfo.findOneAndUpdate(user: req.body.UserID,
       {
       phone: req.body.phone,
       adress: req.body.address,
