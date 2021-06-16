@@ -65,6 +65,19 @@ User.findOneAndUpdate({username : req.body.username},{password:bcrypt.hashSync(r
     }
   })
 })
+//Info
+router.get('/info', async function(req,res){
+  if (!req.body.UserID) {
+    return res.status(400).send('Error')
+  } 
+  let info = infoUser.findOne({user: req.body.User})
+  if (!info) { 
+    return res.status('non info')
+ }else return res.status(200).send(info)
+
+})
+
+
 
 //Update User info
 router.post("/addInfo",async function(req, res){
@@ -101,7 +114,8 @@ router.post("/updateInfo",async function(req, res){
   if (!user) {
     return res.status(400).send("Invalid User");
   }
-
+  const info = await userInfo.findOne(req.body.UserID)
+  if (!info) {return res.status(400).send("Chưa có thông tin")}
   userInfo.findByIdAndUpdate(req.body.id,
     {
     phone: req.body.phone,
