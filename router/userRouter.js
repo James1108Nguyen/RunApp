@@ -68,7 +68,7 @@ router.get('/getInfo', async function(req,res){
   let info = await userInfo.findOne({user: req.body.UserID})
   if (!info) { 
     return res.status(422).send('Info not found')
- }else return res.status(200).send(info._id)
+ }else return res.status(200).send(info)
 
 })
 
