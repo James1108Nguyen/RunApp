@@ -61,7 +61,7 @@ User.findOneAndUpdate({username : req.body.username},{password:bcrypt.hashSync(r
   })
 })
 //Info
-router.get('/getInfo', async function(req,res){
+router.post('/getInfo', async function(req,res){
   if (!req.body.UserID) {
     return res.status(400).send('Error')
   } 
