@@ -74,7 +74,7 @@ router.get('/getInfo', async function(req,res){
 
 
 //test  
-router.get('/getInfo/:id',function(req,res){
+router.get('/getInfo/:id',async function(req,res){
   if (!req.params.id) {
     return res.status(400).send('Error')
   } 
