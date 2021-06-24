@@ -73,6 +73,20 @@ router.get('/getInfo', async function(req,res){
 })
 
 
+//test  
+router.get('/getInfo/:id',function(req,res){
+  if (!req.params.id) {
+    return res.status(400).send('Error')
+  } 
+  let info = await userInfo.findOne({user: req.params.id})
+  if (!info) { 
+    return res.status(422).send('Info not found')
+ }else return res.status(200).send(info)
+
+})
+
+
+
 
 //Update User info
 router.post("/addInfo",async function(req, res){
