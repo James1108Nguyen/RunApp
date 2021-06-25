@@ -161,7 +161,7 @@ router.post("/Infov2",async function(req, res){
       
       ,{new: true},(error,data) => {
       if(error){
-        return res.status(422).send(error);
+        return res.status(422).send('Lỗi roài');
       }else{
         return res.status(200).send(data);
       }
