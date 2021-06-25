@@ -158,6 +158,7 @@ router.post("/Infov2",async function(req, res){
       weight: req.body.weight,
       description: req.body.description,
       job: req.body.job,
+      birthday: req.body.birthday,
     }
       
       ,{new: true},(error,data) => {
