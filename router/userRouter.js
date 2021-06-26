@@ -106,6 +106,7 @@ router.post("/Infov2",async function(req, res){
   .catch(()=> {
     userInfo.findOneAndUpdate({user: req.body.UserID},
       {
+      mail: req.body.mail,
       phone: req.body.phone,
       address: req.body.address,
       fullname: req.body.fullname,
