@@ -14,8 +14,21 @@ router.get('/',async function(req,res){
     
 })
 
+
+router.get('/foodtype',async function(req,res){
+    var foodtype = await foodType.find();
+   if (foodtype) {
+     res.send(foodtype);
+   } else {
+      res.status(500).send("Bad server");
+   }
+    
+    
+})
+
+
 router.post('/foodtype', async (req, res) => {
-    let newtype = foodtype({
+    let newtype = foodType({
         type: req.body.type,
         typeName: req.body.typeName,
     })
