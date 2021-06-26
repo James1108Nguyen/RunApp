@@ -207,7 +207,9 @@ router.post('/register', async function(req,res){
           .save()
           .then((newInfo) => {
             console.log("Đăng ký thành công ^^",newInfo)
-            return res.status(201).send(createdUser)
+            return res.status(201).json({User:createdUser,
+            email: newInfo.email
+            })
             
           }).catch((error)=> {
             return res.status(404).send(error)
