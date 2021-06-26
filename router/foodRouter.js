@@ -31,6 +31,7 @@ router.post('/foodtype', async (req, res) => {
     let newtype = foodType({
         type: req.body.type,
         typeName: req.body.typeName,
+        image: res.body.image,
     })
     newtype.save()
     .then((newtype)=> {
