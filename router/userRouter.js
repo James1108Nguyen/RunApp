@@ -90,32 +90,7 @@ router.get('/getInfo/:id',async function(req,res){
 
 //Update User info
 router.post("/addInfo",async function(req, res){
-  const user = await User.findById(req.body.UserID)
-  if (!user) {
-    return res.status(400).send("Invalid User");
-  }
-  let info = new userInfo({
-    user: req.body.UserID,
-    phone: req.body.phone,
-    adress: req.body.address,
-    fullname: req.body.fullname,
-    image: req.body.image,
-    gender: req.body.gender,
-    note: req.body.note,
-    height: req.body.height,
-    weight: req.body.weight,
-    description: req.body.description,
-    job: req.body.job,
-  })
-
-  info
-  .save()
-  .then((newInfo) => {
-    return res.status(201).send(newInfo)
-  })
-  .catch((error)=> {
-    return res.status(404).send(error)
-  })
+ 
 })
 
 
@@ -217,20 +192,26 @@ router.post("/updateInfo",async function(req, res){
 //register
 router.post('/register', async function(req,res){
     let user = User({
-        email: req.body.email,
         username: req.body.username,
         password: bcrypt.hashSync(req.body.password, salt),
-        phone: req.body.phone,
-        sex: req.body.sex,
-        address: req.body.address,
-        fullname: req.body.fullname,
-             
       });
       user
         .save()
         .then((createdUser) => {   
-          res.send({username:createdUser.username,password:createdUser.password});
-          console.log("Đăng ký thành công ^^")
+          let info = new userInfo({
+            user: createdUser._id,
+            email: req.body.email,
+          })   
+          console.log(info)       
+          info
+          .save()
+          .then((newInfo) => {
+            console.log("Đăng ký thành công ^^",newInfo)
+            return res.status(201).send(createdUser)
+            
+          }).catch((error)=> {
+            return res.status(404).send(error)
+          })
         })
         .catch((err) => {
           res.status(500).json({
