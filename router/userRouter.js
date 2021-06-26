@@ -83,6 +83,7 @@ router.post("/Infov2",async function(req, res){
   }
   let info = new userInfo({
     user: req.body.UserID,
+    mail: req.body.mail,
     phone: req.body.phone,
     address: req.body.address,
     fullname: req.body.fullname,
