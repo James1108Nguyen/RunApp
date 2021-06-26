@@ -127,7 +127,7 @@ router.post("/Infov2",async function(req, res){
   let info = new userInfo({
     user: req.body.UserID,
     phone: req.body.phone,
-    adress: req.body.address,
+    address: req.body.address,
     fullname: req.body.fullname,
     image: req.body.image,
     gender: req.body.gender,
@@ -149,7 +149,7 @@ router.post("/Infov2",async function(req, res){
     userInfo.findOneAndUpdate({user: req.body.UserID},
       {
       phone: req.body.phone,
-      adress: req.body.address,
+      address: req.body.address,
       fullname: req.body.fullname,
       image: req.body.image,
       gender: req.body.gender,
