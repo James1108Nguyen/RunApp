@@ -23,7 +23,7 @@ let userInfo_schema = mongoose.Schema({
         require: true,
         unique: true
     },
-    email: {
+    mail: {
         type: String,
         default: ''
     },
