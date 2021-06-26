@@ -49,6 +49,9 @@ let foodtype_scheme = mongoose.Schema({
     typeName:{
         type: String,
         unique:true,
+    },
+    image:{
+        type:String,
     }
 
 })
