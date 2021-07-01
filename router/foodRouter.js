@@ -22,8 +22,6 @@ router.get('/foodtype',async function(req,res){
    } else {
       res.status(500).send("Bad server");
    }
-    
-    
 })
 
 
