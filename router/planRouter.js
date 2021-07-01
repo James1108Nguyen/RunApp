@@ -4,7 +4,7 @@ const { planType, plan } = require("../models/plan")
 
 router.get('/',async function(req,res){
     var plantype = await planType.find()
-                                .populate({path: 'web'});
+                                .populate({path: 'list'});
    if (plantype) {
      res.send(plantype);
    } else {
