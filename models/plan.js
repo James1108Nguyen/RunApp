@@ -9,7 +9,7 @@ let plan_schema = mongoose.Schema({
         unique: true, 
         require: true
     },
-    urlImage: {
+    imageUrl: {
         type: String,
     },
     webUrl:{
@@ -39,7 +39,6 @@ let plantype_scheme = mongoose.Schema({
     list:[{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'plan',
-        unique: true,    
     }],
 })
 
