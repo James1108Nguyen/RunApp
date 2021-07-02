@@ -38,7 +38,6 @@ router.post('/insertType', async (req, res) => {
     let newtype = planType({
         type: req.body.type,
         title: req.body.title,
-        image: req.body.image
     })
     console.log()
     newtype.save()

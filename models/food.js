@@ -23,7 +23,6 @@ let food_schema = mongoose.Schema({
     },
     totalWeight: {
         type: Number,
-        require: true
     },
     fat: {
         type: Number

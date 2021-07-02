@@ -33,9 +33,6 @@ let plantype_scheme = mongoose.Schema({
         type: String,
         unique:true,
     },
-    image:{
-        type:String,
-    },
     list:[{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'plan',
