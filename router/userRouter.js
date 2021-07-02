@@ -39,7 +39,7 @@ router.post("/login", async function(req,res){
         return res.status(422).send("Rất tiếc, mật khẩu của bạn không đúng. Vui lòng kiểm tra lại mật khẩu.")
     }  
 
-    const token = jwt.sign({_id: user._id}, process.env.TOKEN_SECRET, { expiresIn: 2*60*60 });
+    const token = jwt.sign({_id: user._id}, process.env.TOKEN_SECRET, { expiresIn: 60*60*24 });
     res.header('auth-token', token).send(token);
     
 })
