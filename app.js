@@ -1,35 +1,31 @@
-
-const express = require('express')
-const app = express()
-const mongoose = require("mongoose")
-const morgan=require('morgan')
+const express = require("express");
+const app = express();
+const mongoose = require("mongoose");
+const morgan = require("morgan");
 
 // để xem log web
 app.use(morgan("tiny"));
 
-//Using enviroment variable 
+//Using enviroment variable
 require("dotenv").config();
-
 
 //middleware
 app.use(express.urlencoded()); // Parse URL-encoded bodies
 app.use(express.json()); //to support JSON encode
 
-var cors = require('cors');
+var cors = require("cors");
 app.use(cors());
 
-var userRouter = require("./router/userRouter")
-app.use("/api/users",userRouter);
+var userRouter = require("./router/userRouter");
+app.use("/api/users", userRouter);
 
-var foodRouter = require("./router/foodRouter")
-app.use("/api/food",foodRouter);
+var foodRouter = require("./router/foodRouter");
+app.use("/api/food", foodRouter);
 
-var planRouter = require("./router/planRouter")
-app.use("/api/plan",planRouter);
+var planRouter = require("./router/planRouter");
+app.use("/api/plan", planRouter);
 
-
-
-const connectString=process.env.connectString;
+const connectString = process.env.connectString;
 // kết nối database
 mongoose
   .connect(connectString, { useNewUrlParser: true, useUnifiedTopology: true })
@@ -40,16 +36,10 @@ mongoose
     console.log(err);
   });
 
-
-
-
 // để định nghĩa port 3000 - không thể thiếu
 
-const PORT = process.env.PORT || 3000;
+const PORT = 3000;
 var server = app.listen(PORT, function () {
   var port = server.address().port;
   console.log("Express is working on port", port);
 });
-
-
-
